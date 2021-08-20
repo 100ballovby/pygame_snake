@@ -7,13 +7,30 @@ import pygame as pg
 class GameRound:
     # TODO: make a main Game Object.
     def __init__(self):
-        pass
+        # screen size
+        self.screen_width = 720
+        self.screen_height = 460
+
+        # colors
+        self.colors = {
+            'red': pg.Color(255, 0, 0),
+            'green': pg.Color(0, 255, 0),
+            'blue': pg.Color(0, 0, 255),
+            'white': pg.Color(255, 255, 255),
+            'black': pg.Color(0, 0, 0),
+        }
+
+        # fps controller
+        self.fps_controller = pg.time.Clock()
+
+        # game score
+        self.score = 0
 
     @staticmethod
     def check_errors():
         """
         Initializing pygame and checking for errors.
-        If erorr exists, crash programm.
+        If erorr exists, crash program.
         :return: None
         """
         check = pg.init()  # Инициализирую pygame
