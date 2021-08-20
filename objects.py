@@ -143,6 +143,20 @@ class Snake:
             self.snake_body.pop()  # удаляю последний сегмент змеи
         return score, food_position
 
+    def draw_snake(self, play_surface, surf_color):
+        # displaying segments of snake
+        play_surface.fill(surf_color)
+        for pos in self.snake_body:
+            pg.draw.rect(
+                play_surface, (0, 255, 0), pg.Rect(
+                    pos[0], pos[1], 10, 10
+                )
+            )
+
+
+
+
+
 
 
 class Food:
