@@ -164,6 +164,14 @@ class Food:
             random.randrange(1, sh / 10),
         ]
 
+    def draw_food(self, play_surface):
+        pg.draw.rect(
+            play_surface, self.food_color, pg.Rect(
+                self.food_pos[0], self.food_pos[1],
+                self.food_size_x, self.food_size_y
+            )
+        )
+
 
 if __name__ == '__main__':
     GameRound.check_errors()
