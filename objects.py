@@ -6,7 +6,6 @@ import pygame.display
 
 
 class GameRound:
-    # TODO: make a main Game Object.
     def __init__(self):
         # screen size
         self.screen_width = 720
@@ -85,6 +84,22 @@ class GameRound:
         else:
             score_rect.midtop(360, 230)
         self.play_surface.blit(score_surface, score_rect)
+
+    def game_over(self):
+        go_font = pg.font.SysFont('Calibri', 24)
+        go_surface = go_font.render(
+            'Game Over', True, self.colors['red']
+        )
+        go_rect = go_surface.get_rect()
+        go_rect.midtop(360, 100)
+        self.play_surface.blit(go_surface, go_rect)
+        self.show_score(2)
+        pg.display.flip()
+        time.sleep(10)
+        pg.quit()
+        sys.exit()
+
+
 
 
 
