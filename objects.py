@@ -128,6 +128,21 @@ class Snake:
         elif self.direction == 'DOWN':
             self.snake_pos[1] += 10
 
+    def body_mechanism(self, score, food_position,
+                       screen_width, screen_height):
+        self.snake_body.insert(0, list(self.snake_pos))
+        if (self.snake_pos[0] == food_position[0] and
+            self.snake_pos[1] == food_position[1]):
+            # если позиция рта змеи и еды совпадает, переместить еду на случайную позицию
+            food_position = [
+                random.randrange(1, screen_width / 10),
+                random.randrange(1, screen_height / 10),
+            ]
+            score += 1
+        else:
+            self.snake_body.pop()  # удаляю последний сегмент змеи
+        return score, food_position
+
 
 
 class Food:
