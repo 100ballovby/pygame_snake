@@ -100,13 +100,14 @@ class GameRound:
         sys.exit()
 
 
-
-
-
 class Snake:
     # TODO: choose snake position and appearance,
     #  add eating method
-    pass
+    def __init__(self):
+        self.snake_pos = [100, 0]
+        self.snake_body = [[100, 0], [90, 0], [80, 0]]
+        self.direction = 'RIGHT'
+        self.change_to = self.direction
 
 
 class Food:
