@@ -118,6 +118,15 @@ class Snake:
                 )):
             self.direction = self.change_to
 
+    def change_head_position(self):
+        if self.direction == 'RIGHT':
+            self.snake_pos[0] += 10
+        elif self.direction == 'LEFT':
+            self.snake_pos[0] -= 10
+        elif self.direction == 'UP':
+            self.snake_pos[1] -= 10
+        elif self.direction == 'DOWN':
+            self.snake_pos[1] += 10
 
 
 
