@@ -2,7 +2,6 @@ import random
 import time
 import sys
 import pygame as pg
-import pygame.display
 
 
 class GameRound:
