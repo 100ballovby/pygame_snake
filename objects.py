@@ -79,9 +79,9 @@ class GameRound:
         )
         score_rect = score_surface.get_rect()
         if var == 1:
-            score_rect.midtop(50, 50)
+            score_rect.midtop = (50, 50)
         else:
-            score_rect.midtop(360, 230)
+            score_rect.midtop = (360, 230)
         self.play_surface.blit(score_surface, score_rect)
 
     def game_over(self):
