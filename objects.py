@@ -11,6 +11,10 @@ class GameRound:
         self.screen_width = 720
         self.screen_height = 460
 
+        self.play_surface = pg.display.set_mode(
+            (self.screen_width, self.screen_height)
+        )
+
         # colors
         self.colors = {
             'red': pg.Color(255, 0, 0),
@@ -38,6 +42,26 @@ class GameRound:
             sys.exit()  # закрыть приложение
         else:
             print('OK')
+
+    def set_title(self, title):
+        pg.display.set_caption(title)
+
+    def event_loop(self, change_to):
+        for event in pg.event.get():
+            if event.type == pg.KEYDOWN:
+                if event.key == pg.K_RIGHT:  # ord('d')
+                    change_to = 'RIGHT'
+                elif event.key == pg.K_LEFT:
+                    change_to = 'LEFT'
+                elif event.key == pg.K_UP:
+                    change_to = 'UP'
+                elif event.key == pg.K_DOWN:
+                    change_to = 'DOWN'
+
+                elif event.key == pg.K_ESCAPE:  # завершать игру по нажатию на Esc
+                    pg.quit()
+                    sys.exit()
+        return change_to
 
 
 class Snake:
