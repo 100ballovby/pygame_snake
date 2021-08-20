@@ -109,6 +109,17 @@ class Snake:
         self.direction = 'RIGHT'
         self.change_to = self.direction
 
+    def validate_direction(self):
+        if any((
+                self.change_to == 'RIGHT' and not self.direction == 'LEFT',
+                self.change_to == 'LEFT' and not self.direction == 'RIGHT',
+                self.change_to == 'UP' and not self.direction == 'DOWN',
+                self.change_to == 'DOWN' and not self.direction == 'UP',
+                )):
+            self.direction = self.change_to
+
+
+
 
 class Food:
     # TODO: initialize food, choose food position
