@@ -101,8 +101,6 @@ class GameRound:
 
 
 class Snake:
-    # TODO: choose snake position and appearance,
-    #  add eating method
     def __init__(self):
         self.snake_pos = [100, 0]
         self.snake_body = [[100, 0], [90, 0], [80, 0]]
@@ -153,15 +151,18 @@ class Snake:
                 )
             )
 
-
-
-
-
+    # TODO: check boundaries method
 
 
 class Food:
-    # TODO: initialize food, choose food position
-    pass
+    def __init__(self, fc, sw, sh):
+        self.food_color = fc
+        self.food_size_x = 10
+        self.food_size_y = 10
+        self.food_pos = [
+            random.randrange(1, sw / 10),
+            random.randrange(1, sh / 10),
+        ]
 
 
 if __name__ == '__main__':
