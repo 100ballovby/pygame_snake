@@ -2,6 +2,7 @@ import random
 import time
 import sys
 import pygame as pg
+import pygame.display
 
 
 class GameRound:
@@ -62,6 +63,29 @@ class GameRound:
                     pg.quit()
                     sys.exit()
         return change_to
+
+    def refresh_screen(self):
+        pg.display.flip()
+        self.fps_controller.tick(30)
+
+    def show_score(self, var=1):
+        """
+        Displaying score
+        :param var: has 2 values. 1 - left corner,
+        2 - when game stopped, display score in the center of the screen
+        :return:
+        """
+        score_font = pg.font.SysFont('Calibri', 24)
+        score_surface = score_font.render(
+            f'Score {self.score}', True, self.colors['black']
+        )
+        score_rect = score_surface.get_rect()
+        if var == 1:
+            score_rect.midtop(50, 50)
+        else:
+            score_rect.midtop(360, 230)
+        self.play_surface.blit(score_surface, score_rect)
+
 
 
 class Snake:
