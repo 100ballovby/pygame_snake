@@ -22,6 +22,8 @@ while True:
     snake.draw_snake(game.play_surface, game.colors['white'])
     food.draw_food(game.play_surface)
 
+    snake.check_for_boundaries(game.game_over, game.screen_width, game.screen_height)
+
     game.show_score()
     game.refresh_screen()
 

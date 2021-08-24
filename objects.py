@@ -64,7 +64,7 @@ class GameRound:
 
     def refresh_screen(self):
         pg.display.flip()
-        self.fps_controller.tick(30)
+        self.fps_controller.tick(23)
 
     def show_score(self, var=1):
         """
@@ -79,7 +79,7 @@ class GameRound:
         )
         score_rect = score_surface.get_rect()
         if var == 1:
-            score_rect.midtop = (50, 50)
+            score_rect.midtop = (80, 10)
         else:
             score_rect.midtop = (360, 230)
         self.play_surface.blit(score_surface, score_rect)
@@ -90,9 +90,9 @@ class GameRound:
             'Game Over', True, self.colors['red']
         )
         go_rect = go_surface.get_rect()
-        go_rect.midtop(360, 100)
+        go_rect.midtop = (360, 15)
         self.play_surface.blit(go_surface, go_rect)
-        self.show_score(2)
+        self.show_score(0)
         pg.display.flip()
         time.sleep(10)
         pg.quit()
@@ -112,7 +112,7 @@ class Snake:
                 self.change_to == 'LEFT' and not self.direction == 'RIGHT',
                 self.change_to == 'UP' and not self.direction == 'DOWN',
                 self.change_to == 'DOWN' and not self.direction == 'UP',
-                )):
+        )):
             self.direction = self.change_to
 
     def change_head_position(self):
@@ -129,11 +129,11 @@ class Snake:
                        screen_width, screen_height):
         self.snake_body.insert(0, list(self.snake_pos))
         if (self.snake_pos[0] == food_position[0] and
-            self.snake_pos[1] == food_position[1]):
+                self.snake_pos[1] == food_position[1]):
             # если позиция рта змеи и еды совпадает, переместить еду на случайную позицию
             food_position = [
-                random.randrange(1, screen_width / 10),
-                random.randrange(1, screen_height / 10),
+                random.randrange(1, screen_width / 10) * 10,
+                random.randrange(1, screen_height / 10) * 10,
             ]
             score += 1
         else:
@@ -150,7 +150,17 @@ class Snake:
                 )
             )
 
-    # TODO: check boundaries method
+    def check_for_boundaries(self, game_over, screen_width, screen_height):
+
+        if any((self.snake_pos[0] > screen_width - 10
+                or self.snake_pos[0] < 0,
+                self.snake_pos[1] > screen_height - 10
+                or self.snake_pos[1] < 0)):
+            game_over()
+        for block in self.snake_body[1:]:
+            if block[0] == self.snake_pos[0] and \
+                    block[1] == self.snake_pos[1]:
+                game_over()
 
 
 class Food:
@@ -159,8 +169,8 @@ class Food:
         self.food_size_x = 10
         self.food_size_y = 10
         self.food_pos = [
-            random.randrange(1, sw / 10),
-            random.randrange(1, sh / 10),
+            random.randrange(1, sw / 10) * 10,
+            random.randrange(1, sh / 10) * 10,
         ]
 
     def draw_food(self, play_surface):
